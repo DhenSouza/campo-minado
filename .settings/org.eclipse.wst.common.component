@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="campo-minado">
+    <wb-module deploy-name="mine-sweeper">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="campo-minado"/>
-        <property name="java-output-path" value="/campo-minado/build/classes"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
+        <property name="java-output-path" value="/mine-sweeper/build/classes"/>
+        <property name="context-root" value="mine-sweeper"/>
     </wb-module>
 </project-modules>
