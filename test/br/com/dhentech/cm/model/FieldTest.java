@@ -114,4 +114,36 @@ public class FieldTest {
 		});
 	}
 
+	@Test
+	void testOpenNeighbor1() {
+		Field field11 = new Field(1, 1);
+		Field field22 = new Field(2, 2);
+
+		field22.addNeighbor(field11);
+
+		field.addNeighbor(field22);
+		field.openField();
+
+		assertTrue(field22.isOpen() && field11.isOpen());
+	}
+	
+	/* O campo 2,2 nao pode propagar tendo os campos vizinhos minados*/
+	@Test
+	void testOpenNeighbor2() {
+		Field field11 = new Field(1, 1);
+		Field field12 = new Field(1, 1);
+		field12.mineField();
+		
+		Field field22 = new Field(2, 2);
+		field22.addNeighbor(field11);
+		field22.addNeighbor(field12);
+		
+		field.addNeighbor(field22);
+		field.openField();
+		
+		assertTrue(field22.isOpen() && field11.isClose());
+
+	}
+
+
 }

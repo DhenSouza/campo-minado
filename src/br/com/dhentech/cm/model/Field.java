@@ -90,5 +90,13 @@ public class Field {
 	public boolean isMarked() {
 		return marked;
 	}
+	
+	public boolean isOpen() {
+		return open;
+	}
+	
+	public boolean isClose() {
+		return !open;
+	}
 
 }
