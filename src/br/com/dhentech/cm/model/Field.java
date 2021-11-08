@@ -80,5 +80,15 @@ public class Field {
 	boolean safeneighborhood() {
 		return neighborhoods.stream().noneMatch(v -> v.mined);
 	}
+	
+	void mineField() {
+		if(!mined) {
+			mined = true;
+		}
+	}
+	
+	public boolean isMarked() {
+		return marked;
+	}
 
 }
