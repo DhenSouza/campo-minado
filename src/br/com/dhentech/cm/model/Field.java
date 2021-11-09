@@ -109,9 +109,9 @@ public class Field {
 
 	/* Garantir que o objetivo seja alcançado nos campos */
 	boolean objectiveAchieved() {
-		boolean uncovered = !mined && open;
+		boolean desvendado = !mined && open;
 		boolean protegido = mined && marked;
-		return uncovered || protegido;
+		return desvendado || protegido;
 	}
 
 	/* Para saber a quantidade de minas que tem na vizinhança */

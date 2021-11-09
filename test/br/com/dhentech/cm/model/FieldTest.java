@@ -144,6 +144,40 @@ public class FieldTest {
 		assertTrue(field22.isOpen() && field11.isClose());
 
 	}
+	/* teste com o objetivo do campo alcançado*/
+	@Test
+	void testObjectiveAchieved1() {
+		Field field32 = new Field(3,2);
+		Field field34 = new Field(3,4);
+		field32.openField();
+		field32.changeMarking();
+		
+		field34.openField();
+		field34.changeMarking();
+		
+		field.addNeighbor(field32);
+		field.addNeighbor(field34);
+		
+		field.openField();
+		assertTrue(field32.objectiveAchieved() && field34.objectiveAchieved());
+	}
+	
+	/*Teste com o objetivo do campo nao alcançado*/
+	@Test
+	void testObjectiveAchieved2() {
+		Field field32 = new Field(3,2);
+		Field field34 = new Field(3,4);
+		field32.changeMarking();
+		field32.mineField();
+		
+		field34.mineField();
+		
+		field.addNeighbor(field32);
+		field.addNeighbor(field34);
+		
+		field.openField();
+		assertFalse(field32.objectiveAchieved() && field34.objectiveAchieved());
+	}
 
 
 }
