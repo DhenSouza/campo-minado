@@ -80,23 +80,63 @@ public class Field {
 	boolean safeneighborhood() {
 		return neighborhoods.stream().noneMatch(v -> v.mined);
 	}
-	
+
 	void mineField() {
-		if(!mined) {
+		if (!mined) {
 			mined = true;
 		}
 	}
-	
+
 	public boolean isMarked() {
 		return marked;
 	}
-	
+
 	public boolean isOpen() {
 		return open;
 	}
-	
+
 	public boolean isClose() {
 		return !open;
+	}
+
+	public Integer getLine() {
+		return line;
+	}
+
+	public Integer getColumn() {
+		return column;
+	}
+
+	/* Garantir que o objetivo seja alcançado nos campos */
+	boolean objectiveAchieved() {
+		boolean uncovered = !mined && open;
+		boolean protegido = mined && marked;
+		return uncovered || protegido;
+	}
+
+	/* Para saber a quantidade de minas que tem na vizinhança */
+	long minesInTheNeighborhood() {
+		return neighborhoods.stream().filter(v -> v.mined).count();
+	}
+
+	void resetGame() {
+		open = false;
+		mined = false;
+		marked = false;
+	}
+	
+	public String toString() {
+		if(this.marked) {
+			return "x";
+		} else if(this.open && this.mined) {
+			return "*";
+		} else if(this.open && minesInTheNeighborhood() > 0) {
+			return Long.toString(minesInTheNeighborhood());
+		} else if(this.open) {
+			return " ";
+		} else {
+			return "?";
+		}
 	}
 
 }
