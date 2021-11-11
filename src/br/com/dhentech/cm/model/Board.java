@@ -22,10 +22,24 @@ public class Board {
 		drawMinas();
 
 	}
+	
+	public void open(int line, int column) {
+		fields.parallelStream()
+		.filter(f -> f.getLine() == line && f.getColumn() == column)
+		.findFirst()
+		.ifPresent(f -> f.openField());
+	}
+	
+	public void selected(int line, int column) {
+		fields.parallelStream()
+		.filter(f -> f.getLine() == line && f.getColumn() == column)
+		.findFirst()
+		.ifPresent(f -> f.changeMarking());
+	}
 
 	private void generateFields() {
-		for (int line = 0; line < lines; line++) {
-			for (int column = 0; column < columns; column++) {
+		for (int line = 0; line < this.lines; line++) {
+			for (int column = 0; column < this.columns; column++) {
 				fields.add(new Field(line, column));
 			}
 		}
@@ -67,7 +81,18 @@ public class Board {
 	}
 	
 	public String toString() {
-		return "";
+		StringBuilder sb = new StringBuilder();
+		int i = 0;
+		for(int l = 0; l < this.lines; l++) {
+			for(int c = 0; c < this.columns; c++) {
+				sb.append(" ");
+				sb.append(fields.get(i));
+				sb.append(" ");
+				i++;
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 
 }
