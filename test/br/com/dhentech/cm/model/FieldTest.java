@@ -179,5 +179,4 @@ public class FieldTest {
 		assertFalse(field32.objectiveAchieved() && field34.objectiveAchieved());
 	}
 
-
 }
