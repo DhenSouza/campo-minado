@@ -82,9 +82,11 @@ public class Field {
 	}
 
 	void mineField() {
-		if (!mined) {
-			mined = true;
-		}
+		mined = true;
+	}
+
+	public boolean isMined() {
+		return mined;
 	}
 
 	public boolean isMarked() {
@@ -124,15 +126,15 @@ public class Field {
 		mined = false;
 		marked = false;
 	}
-	
+
 	public String toString() {
-		if(this.marked) {
+		if (this.marked) {
 			return "x";
-		} else if(this.open && this.mined) {
+		} else if (this.open && this.mined) {
 			return "*";
-		} else if(this.open && minesInTheNeighborhood() > 0) {
+		} else if (this.open && minesInTheNeighborhood() > 0) {
 			return Long.toString(minesInTheNeighborhood());
-		} else if(this.open) {
+		} else if (this.open) {
 			return " ";
 		} else {
 			return "?";
