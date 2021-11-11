@@ -23,15 +23,19 @@ public class Board {
 	}
 
 	private void generateFields() {
-		for (int l = 0; l < lines; l++) {
-			for (int c = 0; c < columns; c++) {
-				fields.add(new Field(l, c));
+		for (int line = 0; line < lines; line++) {
+			for (int column = 0; column < columns; column++) {
+				fields.add(new Field(line, column));
 			}
 		}
 	}
 
 	private void AssociateNeighbors() {
-
+		for(Field c1: fields) {
+			for(Field c2: fields) {
+				c1.addNeighbor(c2);
+			}
+		}
 	}
 
 	private void drawMinas() {
