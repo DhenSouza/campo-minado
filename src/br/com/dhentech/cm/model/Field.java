@@ -57,7 +57,7 @@ public class Field {
 			open = true;
 
 			if (mined) {
-				throw new ExplosionException();
+				throw new ExplosionException("Mina encontrada!");
 			}
 
 			if (safeneighborhood()) {
@@ -91,6 +91,10 @@ public class Field {
 
 	public boolean isMarked() {
 		return marked;
+	}
+	
+	 void setOpen(boolean open) {
+		this.open = open;
 	}
 
 	public boolean isOpen() {

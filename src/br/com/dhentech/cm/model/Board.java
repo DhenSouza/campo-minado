@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import br.com.dhentech.cm.exception.ExplosionException;
+
 public class Board {
 
 	private int lines;
@@ -24,13 +26,20 @@ public class Board {
 	}
 	
 	public void open(int line, int column) {
-		fields.parallelStream()
-		.filter(f -> f.getLine() == line && f.getColumn() == column)
-		.findFirst()
-		.ifPresent(f -> f.openField());
+		try {
+			fields.parallelStream()
+			.filter(f -> f.getLine() == line && f.getColumn() == column)
+			.findFirst()
+			.ifPresent(f -> f.openField());
+			
+		} catch (ExplosionException ex) {
+			fields.forEach(c -> c.setOpen(true));
+			
+			throw ex;
+		}
 	}
 	
-	public void selected(int line, int column) {
+	public void changeMarking(int line, int column) {
 		fields.parallelStream()
 		.filter(f -> f.getLine() == line && f.getColumn() == column)
 		.findFirst()
@@ -60,11 +69,9 @@ public class Board {
 		Predicate<Field> mined = m -> m.isMined();
 
 		do {
-			armedMines = fields.stream().filter(mined).count();
-
 			int random = (int) (Math.random() * fields.size());
-
 			fields.get(random).mineField();
+			armedMines = fields.stream().filter(mined).count();
 		} while (armedMines < mines);
 	}
 
