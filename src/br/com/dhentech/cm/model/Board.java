@@ -89,8 +89,20 @@ public class Board {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		
+		sb.append("  ");
+		for (int c = 0; c < this.columns; c++) {
+			sb.append(" ");
+			sb.append(c);
+			sb.append(" ");
+		}
+		
+		sb.append("\n");
+		
 		int i = 0;
 		for(int l = 0; l < this.lines; l++) {
+			sb.append(l);
+			sb.append(" ");
 			for(int c = 0; c < this.columns; c++) {
 				sb.append(" ");
 				sb.append(fields.get(i));
